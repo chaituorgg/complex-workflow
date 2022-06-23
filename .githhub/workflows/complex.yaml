@@ -1,22 +1,14 @@
-name: complex
+name: first
 
-on: push
+on:
+  push:
+    branches: [ main ]
 
-jobs: 
-  ubuntu:
-   run-on: ubuntu-latest
-   steps:
-   - run: date
-  windows:
-   run-on: windows-latest
-   steps:
-   - run: date
-  Macos:
-   run-on: macos-latest
-   steps:
-   - run: date
-  depends:
-   needs: [ubuntu,windows,macos]
-   run-on: ubuntu-latest
-   steps:
-   - run: date
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Step one
+        run: "Get-ChildItem Env: | Sort-Object Name"
+
